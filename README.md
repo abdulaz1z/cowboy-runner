@@ -35,6 +35,32 @@ To be added
 
 ------------
 
+### Project File Structure
+- **cowboy-runner** - name of the project
+	- src
+		- com
+			- cowboy
+				- main
+					- Game.java
+				- state
+					- State.java
+					- InitState.java
+					- MenuState.java
+					- PlayState.java
+					- GameOverState.java
+				- model
+					- Player.java
+				- resource
+					- Resource.java
+				- util
+					- Animation.java
+					- Frame.java
+					- InputHandler.java
+					- BgImageLayer.java
+	- images - folder for all images
+
+------------
+
 ##### Java Documentation Comments
 Note: do not type it. Use `/**` then press enter. Then edit it.
 

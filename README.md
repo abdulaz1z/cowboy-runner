@@ -1,17 +1,17 @@
 # Cowboy Runner
 
-###Description
+### Description
 To be added
 
 ------------
 
-###Features
+### Features
 - To be added
 - To be added
 
 ------------
 
-###Development workflow
+### Development workflow
 1. Create an issue on github with the detailed description of what needs to be done. Keep the issue small.
 2. Assign it to yourself if you are going to work on this issue.
 3. Clone the repo if you have not done so yet.

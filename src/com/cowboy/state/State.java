@@ -33,7 +33,7 @@ public abstract class State {
      *
      * @param g The Graphics objects needed to draw
      */
-    public abstract void render(Graphics g);
+    public abstract void draw(Graphics g);
 
     /**
      * Method for handling a key pressed on the current state.

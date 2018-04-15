@@ -9,7 +9,7 @@ import java.awt.*;
  */
 public class Frame {
     Image image;
-    long duration;
+    double duration;
 
     /**
      * Constructs a frame object.
@@ -17,7 +17,7 @@ public class Frame {
      * @param image Frame image
      * @param duration Duration of the image 
      */
-    public Frame(Image image, long duration) {
+    public Frame(Image image, double duration) {
         this.image = image;
         this.duration = duration;
     }

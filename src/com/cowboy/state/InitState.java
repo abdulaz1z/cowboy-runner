@@ -14,29 +14,45 @@ import java.awt.event.KeyEvent;
 public class InitState extends State {
     
 	/**
-	 * Method to load all the game assets.
-	 */
+     * Method for initializing and loading assets.
+     */
 	@Override
     public void init() {
 		Resource.load();
     }
 
+	/**
+     * Method for updating this state's game objects.
+     */
     @Override
     public void update() {
 
     }
 
+    /**
+     * Method for rendering this state's game objects on the screen.
+     *
+     * @param g The Graphics objects needed to draw
+     */
     @Override
     public void draw(Graphics g) {
-
+    	
     }
 
+    /**
+     * Method for handling a key pressed on this state.
+     *
+     */
     @Override
     public boolean keyPressed(KeyEvent e) {
         System.out.println("keyPressed");
         return true;
     }
 
+    /**
+     * Method for handling a key released on this state.
+     *
+     */
     @Override
     public boolean keyReleased(KeyEvent e) {
         System.out.println("keyReleased");

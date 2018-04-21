@@ -1,8 +1,7 @@
 package com.cowboy.util;
 
 /**
- *The Animation Class resprent the amount of frames displayed.
- *
+ *This class resprent an animation.
  * @author  James Cho, modified by Donelys Familia.
  */
 public class Animation {
@@ -18,8 +17,7 @@ public class Animation {
     /**
      * Constructor for animation class. This constructor is will count and compute the amount
      * time each frames has and its duration.
-     *
-     *
+     * 
      * @param frames This constructor can accept any number of Frame objects.
      */
     public Animation(Frame... frames) {

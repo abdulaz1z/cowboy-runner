@@ -57,7 +57,7 @@ To be added
 					- Frame.java
 					- InputHandler.java
 					- BgImageLayer.java
-	- images - folder for all images
+		- images - folder for all images
 
 ------------
 

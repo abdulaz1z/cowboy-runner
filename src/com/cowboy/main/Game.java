@@ -1,128 +1,127 @@
 package com.cowboy.main;
 
+import java.applet.Applet;
+import java.awt.*;
+
 import com.cowboy.state.InitState;
 import com.cowboy.state.State;
 import com.cowboy.util.InputHandler;
 
-import java.applet.Applet;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Image;
-
 /**
- * This is the starting point of this application where the main game lives. 
- * We have the game loop running in its own thread and game logics within.
+ * This is the starting point of this application where the main game lives. We
+ * have the game loop running in its own thread and game logics within.
  * 
  * @author Abdul Aziz
  */
-public class Game extends Applet implements Runnable{
+public class Game extends Applet implements Runnable {
 	public static final String GAME_NAME = "Cowboy Runner";
 	public static final int GAME_WIDTH = 1000;
 	public static final int GAME_HEIGHT = 500;
-	
+
 	Image offScreen;
 	Graphics offG;
-	
-    InputHandler inputHandler;
-    public volatile State currentState;
-    volatile boolean running = false;
 
-    Thread gameThread;
+	InputHandler inputHandler;
+	public volatile State currentState;
+	volatile boolean running = false;
 
-    /**
-     * Method for initializing the game variables and starting the game thread.
-     */
-    @Override
-    public void init() {
-    	offScreen = this.createImage(Game.GAME_WIDTH, Game.GAME_HEIGHT);
-    	offG = offScreen.getGraphics();
-    	
-        inputHandler = new InputHandler();
-        currentState = new InitState();
-        inputHandler.currentState = currentState;
-        
-        setupApplet();
+	Thread gameThread;
 
-        requestFocus();
-        addKeyListener(inputHandler);
+	/**
+	 * Method for initializing the game variables and starting the game thread.
+	 */
+	@Override
+	public void init() {
+		offScreen = this.createImage(Game.GAME_WIDTH, Game.GAME_HEIGHT);
+		offG = offScreen.getGraphics();
 
-        initializeGame();
-    }
+		inputHandler = new InputHandler();
+		currentState = new InitState();
+		currentState.init();
+		inputHandler.currentState = currentState;
 
-    /**
-     * Method for setting up the applet.
-     */
+		setupApplet();
+		requestFocus();
+		addKeyListener(inputHandler);
+		initializeGame();
+	}
+
+	/**
+	 * Method for setting up the applet.
+	 */
 	private void setupApplet() {
-		//get the parent frame to change the title
-        Frame frame = (Frame) this.getParent().getParent();
-        frame.setTitle(Game.GAME_NAME);
-        setSize(Game.GAME_WIDTH, Game.GAME_HEIGHT);
+		// get the parent frame to change the title
+		Frame frame = (Frame) this.getParent().getParent();
+		frame.setTitle(Game.GAME_NAME);
+		frame.setResizable(false);
+		setSize(Game.GAME_WIDTH, Game.GAME_HEIGHT);
 	}
 
-    /**
-     * Method for initializing and starting the game loop.
-     */
-    private void initializeGame() {
-    	running = true;
-    	gameThread = new Thread(this);
-        gameThread.start();
+	/**
+	 * Method for initializing and starting the game loop.
+	 */
+	private void initializeGame() {
+		running = true;
+		gameThread = new Thread(this);
+		gameThread.start();
 	}
-
+	
 	/**
      * Method for running the game loop in its own thread.
      */
     @Override
-    public void run() {
-    	long updateDurationMillis = 0;  // Measures both update AND render
-		long sleepDurationMillis = 0;   // Measures sleep
+	public void run() {
+		long updateDurationMillis = 0; // Measures both update AND render
+		long sleepDurationMillis = 0; // Measures sleep
 
 		while (running) {
-			long beforeUpdateRender = System.nanoTime();
+			long beforeUpdateDraw = System.nanoTime();
 			long deltaMillis = sleepDurationMillis + updateDurationMillis;
-			
+
 			updateGameObjects(deltaMillis);
 			prepareOffScreenImage();
-			
-			updateDurationMillis = (System.nanoTime() - beforeUpdateRender) / 1000000L; //convert to milliseconds
-			sleepDurationMillis = Math.max(2, 17 - updateDurationMillis);   //sleep at least 2 seconds
-			
-			//repaint();
+
+			updateDurationMillis = (System.nanoTime() - beforeUpdateDraw) / 1000000L; // convert to milliseconds
+			sleepDurationMillis = Math.max(2, 17 - updateDurationMillis); // sleep at least 2 seconds
+
+			repaint();
 			try {
 				Thread.sleep(sleepDurationMillis);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-    }
-    
-    /**
-     * Method for updating the game objects checking for collision.
-     * @param deltaMillis Time elapsed since last update
-     */
-    private void updateGameObjects(float deltaMillis) {
-		this.currentState.update(deltaMillis);
-	}
-    
-    /**
-     * 
-     */
-    private void prepareOffScreenImage() {
-    	offG.clearRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
-    	currentState.draw(offG);
 	}
 
 	/**
-     * Method for clearing the off screen image and drawing.
+	 * Method for updating the game objects checking for collision.
+	 * 
+	 * @param deltaMillis Time elapsed since last update
+	 */
+	private void updateGameObjects(float deltaMillis) {
+		this.currentState.update(deltaMillis);
+	}
+
+	/**
+	 * Method for clearing the off screen image and drawing.
+	 */
+	private void prepareOffScreenImage() {
+		offG.clearRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+		paint(offG);
+	}
+
+	/**
+     * Method for drawing the off screen image on the screen.
      */
     @Override
-    public void update(Graphics g) {
-    	g.drawImage(offScreen, 0, 0, null);
-    }
-    
-//    /**
-//     * Method for drawing game objects on the screen.
-//     */
-//    public void paint(Graphics g) {
-//    	
-//    }
+	public void update(Graphics g) {
+		g.drawImage(offScreen, 0, 0, null);
+	}
+
+    /**
+     * Method for drawing game objects on the screen.
+     */
+	public void paint(Graphics g) {
+		currentState.draw(g);
+	}
 }

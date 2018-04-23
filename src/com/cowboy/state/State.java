@@ -3,6 +3,8 @@ package com.cowboy.state;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+import com.cowboy.main.Game;
+
 /**
  * This class is an abstract class that represent a state of the game (InitState, PlayState and so on).
  *
@@ -15,7 +17,7 @@ public abstract class State {
      * @param newState The new current state of the game
      */
     public void setCurrentState(State newState) {
-        //TODO: set the newState to the current state to Game.java
+    	Game.setCurrentState(newState);
     }
 
     /**

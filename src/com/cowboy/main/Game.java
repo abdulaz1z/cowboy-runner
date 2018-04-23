@@ -21,8 +21,8 @@ public class Game extends Applet implements Runnable {
 	Image offScreen;
 	Graphics offG;
 
-	InputHandler inputHandler;
-	public volatile State currentState;
+	static InputHandler inputHandler;
+	public static State currentState;
 	volatile boolean running = false;
 
 	Thread gameThread;
@@ -124,4 +124,16 @@ public class Game extends Applet implements Runnable {
 	public void paint(Graphics g) {
 		currentState.draw(g);
 	}
+	
+	/**
+     * Method for setting the current state of the game.
+     *
+     * @param newState The new current state of the game
+     */
+    public static void setCurrentState(State newState) {
+    	System.gc();
+    	currentState.init();
+    	currentState = newState;
+    	inputHandler.currentState = newState;
+    }
 }

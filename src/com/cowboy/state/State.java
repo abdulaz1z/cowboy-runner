@@ -25,8 +25,10 @@ public abstract class State {
 
     /**
      * Method for updating the current state's game objects.
+     * 
+     * @param Time elapsed since last update
      */
-    public abstract void update();
+    public abstract void update(float deltaMillis);
 
     /**
      * Method for rendering the game's objects on the screen.

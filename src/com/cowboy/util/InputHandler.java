@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
  * @author Abdul Aziz
  */
 public class InputHandler implements KeyListener{
-    State currentState;
+    public State currentState;
 
     /**
      * Method for handling any typed keys.

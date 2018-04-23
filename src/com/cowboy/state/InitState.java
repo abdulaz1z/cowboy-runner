@@ -1,9 +1,9 @@
 package com.cowboy.state;
 
-import com.cowboy.resource.Resource;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
+
+import com.cowboy.resource.Resource;
 
 /**
  * This is the loading state of the game where we load all 
@@ -23,9 +23,11 @@ public class InitState extends State {
 
 	/**
      * Method for updating this state's game objects.
+     * 
+     * @param deltaMillis Time elapsed since last update
      */
     @Override
-    public void update() {
+    public void update(float deltaMillis) {
 
     }
 
@@ -36,7 +38,7 @@ public class InitState extends State {
      */
     @Override
     public void draw(Graphics g) {
-    	
+    	g.drawImage(Resource.welcome, 0, 0, null);
     }
 
     /**

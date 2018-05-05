@@ -4,6 +4,14 @@ import com.cowboy.util.Animation;
 import com.cowboy.util.Frame;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * This class will handle loading all the images, animation and audios from the assets folder.
@@ -78,6 +86,34 @@ public class Resource {
         }
         return new Animation(frames);
     }
-    
-    
+    public static int getHighScore() throws FileNotFoundException{
+    	BufferedReader reader = new BufferedReader(new FileReader(new File("highscore.txt")));
+    	int highscore = 0;
+        try {
+        	String line = reader.readLine();
+        	highscore = Integer.parseInt(line.trim());
+        	reader.close();
+        } catch (IOException e) {
+        }
+        return highscore;
+    }
+    public static void saveHighScore(int currentScore) throws FileNotFoundException{
+    	BufferedReader reader = new BufferedReader(new FileReader(new File("highscore.txt")));
+    	int highscore = 0;
+        try {
+        	String line = reader.readLine();
+        	highscore = Integer.parseInt(line.trim());
+        	reader.close();
+        } catch (IOException e) {
+        }
+        if(currentScore > highscore){
+        	highscore = currentScore;
+        }
+        try {
+        	BufferedWriter output = new BufferedWriter(new FileWriter(new File("highscore.txt")));
+        	output.write(""+highscore);
+        	output.close();
+        } catch (IOException e) {
+        }
+    }
 }

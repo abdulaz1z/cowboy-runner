@@ -5,27 +5,27 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import com.cowboy.resource.Resource;
+import com.cowboy.util.Background;
 
 public class PlayState extends State{
+	private Background background;
 	
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		
+		background = new Background();
 	}
 
 	@Override
 	public void update(float deltaMillis) {
+		background.update();
+		Resource.playerRun.update(deltaMillis);
 		
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		g.drawImage(Resource.gameBackground, 0, 0, null);
-		g.drawImage(Resource.bgLayer3, 0, 0, null);
-		g.drawImage(Resource.bgLayer1, 0, 0, null);
-		g.drawImage(Resource.bgLayer2, 0, 0, null);
-		g.drawImage(Resource.backgroundGrass, 0, 0, null);
+		background.draw(g);
+		Resource.playerRun.draw(g, 400, 440);
 	}
 
 	@Override

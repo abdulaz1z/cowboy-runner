@@ -49,7 +49,7 @@ public class InitState extends State {
     public void draw(Graphics g) {
     	g.drawImage(Resource.background, 0, 0, null);
     	g.drawImage(Resource.backgroundGrass, 0, 0, null);
-    	Resource.loadingAnimation.render(g, 0, 0);
+    	Resource.loadingAnimation.draw(g, 0, 0);
     }
 
     /**

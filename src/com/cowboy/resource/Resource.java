@@ -31,7 +31,6 @@ public class Resource {
     public static Image bgLayer2;
     public static Image bgLayer3;
     
-    public static Animation playerIdle;
     public static Animation playerRun;
     public static Animation playerSlide;
     public static Animation playerDead;
@@ -51,8 +50,7 @@ public class Resource {
     	bgLayer3 = loadImage("bg_layer_3.png");
     	gameBackground = loadImage("gameBackground.png");
     	gameBackground = loadImage("gameBackground.png");
-    	playerIdle = loadAnimation("player_idle_", 9, ".png");
-    	playerRun = loadAnimation("player_run_", 9, ".png");
+    	playerRun = loadAnimation("player_run_", 10, ".png");
     	playerSlide = loadAnimation("player_slide_", 9, ".png");
     	playerDead = loadAnimation("player_dead_", 9, ".png");
     }

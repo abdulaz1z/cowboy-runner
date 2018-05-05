@@ -2,6 +2,7 @@ package com.cowboy.state;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import com.cowboy.main.Game;
 
@@ -43,11 +44,23 @@ public abstract class State {
      * Method for handling a key pressed on the current state.
      *
      */
-    public abstract boolean keyPressed(KeyEvent e);
+    public abstract void keyPressed(KeyEvent e);
 
     /**
      * Method for handling a key released on the current state.
      *
      */
-    public abstract boolean keyReleased(KeyEvent e);
+    public abstract void keyReleased(KeyEvent e);
+    
+    /**
+     * Method for handling a mouse clicked on the current state.
+     *
+     */
+    public abstract void mouseClicked(MouseEvent e);
+
+    /**
+     * Method for handling a mouse released on the current state.
+     *
+     */
+    public abstract void mouseReleased(MouseEvent e);
 }

@@ -43,6 +43,7 @@ public class Game extends Applet implements Runnable {
 		setupApplet();
 		requestFocus();
 		addKeyListener(inputHandler);
+		addMouseListener(inputHandler);
 		initializeGame();
 	}
 

@@ -2,6 +2,7 @@ package com.cowboy.state;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import com.cowboy.resource.Resource;
 
@@ -34,7 +35,7 @@ public class InitState extends State {
     public void update(float deltaMillis) {
     	counter++;
     	if(isDoneLoading && counter >= 200) {
-    		//TODO : start menu state
+    		this.setCurrentState(new MenuState());
     	}
     	Resource.loadingAnimation.update(deltaMillis);
     }
@@ -56,9 +57,8 @@ public class InitState extends State {
      *
      */
     @Override
-    public boolean keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
         System.out.println("keyPressed");
-        return true;
     }
 
     /**
@@ -66,8 +66,18 @@ public class InitState extends State {
      *
      */
     @Override
-    public boolean keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e) {
         System.out.println("keyReleased");
-        return true;
     }
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("mouse clicked");
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
 }

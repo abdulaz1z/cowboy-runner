@@ -46,7 +46,6 @@ public class InputHandler implements KeyListener, MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("dkfknd");
 		currentState.mouseClicked(e);
 		
 	}

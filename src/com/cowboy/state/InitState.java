@@ -34,7 +34,7 @@ public class InitState extends State {
     @Override
     public void update(float deltaMillis) {
     	counter++;
-    	if(isDoneLoading && counter >= 200) {
+    	if(isDoneLoading && counter >= 150) {
     		this.setCurrentState(new MenuState());
     	}
     	Resource.loadingAnimation.update(deltaMillis);

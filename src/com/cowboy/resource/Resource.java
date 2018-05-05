@@ -1,7 +1,6 @@
 package com.cowboy.resource;
 
 import com.cowboy.util.Animation;
-//import com.cowboy.util.Animation;
 import com.cowboy.util.Frame;
 
 import java.awt.*;
@@ -11,12 +10,18 @@ import java.awt.*;
  */
 public class Resource {
     public static final String IMAGES_FOLDER = "images/";
-    public static final double FRAME_DURATION = .1f;
+    public static final double FRAME_DURATION = 60;
     
     //for InitState
     public static Image background;
     public static Image backgroundGrass;
     public static Animation loadingAnimation;
+    
+    //for PlayState
+    public static Animation playerIdle;
+    public static Animation playerRun;
+    public static Animation playerSlide;
+    public static Animation playerDead;
 
     /**
      * Method for loading all the assets.
@@ -26,6 +31,11 @@ public class Resource {
     	background = loadImage("Background.png");
     	backgroundGrass = loadImage("BackgroundGrass.png");
     	loadingAnimation = loadAnimation("LoadScreen_", 9, ".png");
+    	
+    	playerIdle = loadAnimation("player_idle_", 9, ".png");
+    	playerRun = loadAnimation("player_run_", 9, ".png");
+    	playerSlide = loadAnimation("player_slide_", 9, ".png");
+    	playerDead = loadAnimation("player_dead_", 9, ".png");
     }
 
     /**
@@ -57,4 +67,6 @@ public class Resource {
         }
         return new Animation(frames);
     }
+    
+    
 }

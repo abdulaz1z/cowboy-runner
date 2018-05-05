@@ -23,7 +23,6 @@ public class MenuState extends State{
 
 	@Override
 	public void update(float deltaMillis) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -56,10 +55,10 @@ public class MenuState extends State{
 		mx = e.getX();
 		my = e.getY();
 		if(start.contains(mx, my)){
-			System.out.println("pressing start");
+			this.setCurrentState(new PlayState());
 		}
 		if(highscore.contains(mx, my)){
-			System.out.println("pressing highscore");
+			this.setCurrentState(new HighScoreState());
 		}
 	}
 

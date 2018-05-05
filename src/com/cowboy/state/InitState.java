@@ -12,13 +12,17 @@ import com.cowboy.resource.Resource;
  * @author Abdul Aziz
  */
 public class InitState extends State {
+	private boolean isDoneLoading;
+	private int counter = 0;
     
 	/**
      * Method for initializing and loading assets.
      */
 	@Override
     public void init() {
+		isDoneLoading = false;
 		Resource.load();
+		isDoneLoading = true;
     }
 
 	/**
@@ -28,9 +32,13 @@ public class InitState extends State {
      */
     @Override
     public void update(float deltaMillis) {
-
+    	counter++;
+    	if(isDoneLoading && counter >= 200) {
+    		//TODO : start menu state
+    	}
+    	Resource.loadingAnimation.update(deltaMillis);
     }
-
+    
     /**
      * Method for rendering this state's game objects on the screen.
      *
@@ -38,7 +46,9 @@ public class InitState extends State {
      */
     @Override
     public void draw(Graphics g) {
-    	g.drawImage(Resource.welcome, 0, 0, null);
+    	g.drawImage(Resource.background, 0, 0, null);
+    	g.drawImage(Resource.backgroundGrass, 0, 0, null);
+    	Resource.loadingAnimation.render(g, 0, 0);
     }
 
     /**

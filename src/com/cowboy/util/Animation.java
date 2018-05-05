@@ -67,7 +67,7 @@ public class Animation {
      * @param x The x-coordinate for where the image should be drawn (top-left).
      * @param y The y-coordinate for where the image should be drawn (top-left).
      */
-    public synchronized void render(Graphics g, int x, int y) {
+    public synchronized void draw(Graphics g, int x, int y) {
         g.drawImage(frames[currentFrameIndex].image, x, y, null);
     }
 }

@@ -18,6 +18,11 @@ public class Resource {
     public static Animation loadingAnimation;
     
     //for PlayState
+    public static Image gameBackground;
+    public static Image bgLayer1;
+    public static Image bgLayer2;
+    public static Image bgLayer3;
+    
     public static Animation playerIdle;
     public static Animation playerRun;
     public static Animation playerSlide;
@@ -32,6 +37,12 @@ public class Resource {
     	backgroundGrass = loadImage("BackgroundGrass.png");
     	loadingAnimation = loadAnimation("LoadScreen_", 9, ".png");
     	
+    	gameBackground = loadImage("gameBackground.png");
+    	bgLayer1 = loadImage("bg_layer_1.png");
+    	bgLayer2 = loadImage("bg_layer_2.png");
+    	bgLayer3 = loadImage("bg_layer_3.png");
+    	gameBackground = loadImage("gameBackground.png");
+    	gameBackground = loadImage("gameBackground.png");
     	playerIdle = loadAnimation("player_idle_", 9, ".png");
     	playerRun = loadAnimation("player_run_", 9, ".png");
     	playerSlide = loadAnimation("player_slide_", 9, ".png");

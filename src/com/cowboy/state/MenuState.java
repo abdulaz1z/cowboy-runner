@@ -31,9 +31,9 @@ public class MenuState extends State{
 		g.drawImage(Resource.backgroundGrass,0,0,null);
 		g.setFont(new Font("TimesRoman", Font.BOLD, 50));
 		g.setColor(new Color(102,51,50));
-		g.drawRect(start.x, start.y, start.width, start.height);
+		//g.drawRect(start.x, start.y, start.width, start.height);
 		g.fillRect(start.x, start.y, start.width, start.height);
-		g.drawRect(highscore.x, highscore.y, highscore.width, highscore.height);
+		//g.drawRect(highscore.x, highscore.y, highscore.width, highscore.height);
 		g.fillRect(highscore.x, highscore.y, highscore.width, highscore.height);
 		g.setColor(new Color(254,211,105));
 		g.drawString("START", Game.GAME_WIDTH/2 - 60, Game.GAME_HEIGHT/2 - 10);

@@ -54,8 +54,8 @@ public class Game extends Applet implements Runnable {
 		// get the parent frame to change the title
 		Frame frame = (Frame) this.getParent().getParent();
 		frame.setTitle(Game.GAME_NAME);
-		frame.setResizable(false);
 		setSize(Game.GAME_WIDTH, Game.GAME_HEIGHT);
+		frame.setResizable(false);
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class Game extends Applet implements Runnable {
      */
     public static void setCurrentState(State newState) {
     	System.gc();
-    	currentState.init();
+    	newState.init();
     	currentState = newState;
     	inputHandler.currentState = newState;
     }

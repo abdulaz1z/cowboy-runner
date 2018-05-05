@@ -13,14 +13,19 @@ public class Resource {
     public static final String IMAGES_FOLDER = "images/";
     public static final double FRAME_DURATION = .1f;
     
-    public static Image welcome;
+    //for InitState
+    public static Image background;
+    public static Image backgroundGrass;
+    public static Animation loadingAnimation;
 
     /**
      * Method for loading all the assets.
      */
     public static void load(){
         //initialize all assets here
-    	welcome = loadImage("welcome.png");
+    	background = loadImage("Background.png");
+    	backgroundGrass = loadImage("BackgroundGrass.png");
+    	loadingAnimation = loadAnimation("LoadScreen_", 9, ".png");
     }
 
     /**

@@ -16,7 +16,7 @@ import com.cowboy.util.InputHandler;
 public class Game extends Applet implements Runnable {
 	public static final String GAME_NAME = "Cowboy Runner";
 	public static final int GAME_WIDTH = 1000;
-	public static final int GAME_HEIGHT = 500;
+	public static final int GAME_HEIGHT = 580;
 
 	Image offScreen;
 	Graphics offG;
@@ -99,7 +99,7 @@ public class Game extends Applet implements Runnable {
 	 * @param deltaMillis Time elapsed since last update
 	 */
 	private void updateGameObjects(float deltaMillis) {
-		this.currentState.update(deltaMillis);
+		currentState.update(deltaMillis);
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class Game extends Applet implements Runnable {
      * Method for drawing game objects on the screen.
      */
 	public void paint(Graphics g) {
-		currentState.draw(g);
+		currentState.draw(g);		
 	}
 	
 	/**

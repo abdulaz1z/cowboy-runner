@@ -20,8 +20,8 @@ public class Player {
 	public boolean isAlive;
 	public boolean isSliding;
 	public boolean isDying;
-	float dyingDuration = 600;
-	float slideDuration = 600;
+	float dyingDuration = 500;
+	float slideDuration = 550;
 
 	static final int JUMP_VELOCITY = -15;
 	static final int ACCEL_GRAVITY = 1;
@@ -47,15 +47,14 @@ public class Player {
 			slideDuration -= delta;
 		} else {
 			isSliding = false;
-			slideDuration = 600;
+			slideDuration = 550;
 		}
 		
 		if (dyingDuration > 0 && isDying) {
 			dyingDuration -= delta;
-			isAlive = false;
 		} else {
-			if(!isAlive) {
-				//TODO: send to game over state
+			if(isDying) {
+				isAlive = false;
 			}
 		}
 		
@@ -109,7 +108,7 @@ public class Player {
 	public void jump() {
 		if (isGrounded()) {
 			isSliding = false;
-			slideDuration = 600;
+			slideDuration = 550;
 			y -= 10;
 			velY = JUMP_VELOCITY;
 			updateRects();

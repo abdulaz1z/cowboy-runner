@@ -29,18 +29,17 @@ public class PlayState extends State{
 		Resource.playerJump.update(deltaMillis);
 		Resource.playerSlide.update(deltaMillis);
 		Resource.playerDead.update(deltaMillis);
-		
+	
 		player.update(deltaMillis);
+		if(!player.isAlive) {
+			this.setCurrentState(new GameOverState());
+		}
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		background.draw(g);
-		
-
-		
 		player.draw(g);
-
 	}
 
 	@Override
@@ -50,6 +49,9 @@ public class PlayState extends State{
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			player.slide();
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.die();
 		}
 	}
 

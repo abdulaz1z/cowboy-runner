@@ -10,9 +10,11 @@ import com.cowboy.model.Crate;
 import com.cowboy.model.Player;
 import com.cowboy.resource.Resource;
 import com.cowboy.util.Background;
+import com.cowboy.util.Grass;
 
 public class PlayState extends State{
 	private Background background;
+	private Grass grass;
 	private Player player;
 	
 	private static final int PLAYER_WIDTH = 66;
@@ -29,6 +31,7 @@ public class PlayState extends State{
 	@Override
 	public void init() {
 		background = new Background();
+		grass = new Grass();
 		player = new Player(200, Game.GAME_HEIGHT - 48 - PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
 		
 		crates = new ArrayList<>();
@@ -41,6 +44,7 @@ public class PlayState extends State{
 	@Override
 	public void update(float deltaMillis) {
 		background.update();
+		grass.update();
 		Resource.playerRun.update(deltaMillis);
 		Resource.playerJump.update(deltaMillis);
 		Resource.playerSlide.update(deltaMillis);
@@ -84,12 +88,13 @@ public class PlayState extends State{
 		background.draw(g);
 		player.draw(g);
 		
-		
 		for (Crate crate : crates) {
 			if (crate.visible) {
 				g.drawImage(Resource.crate, (int) crate.x, (int) crate.y, CRATE_WIDTH, CRATE_HEIGHT, null);
 			}
 		}
+		
+		grass.draw(g);
 		
 		g.drawString("SCORE: " + score/100 + "", 50, 50);
 		g.drawString("HEALTH: " + health + "", 650, 50);

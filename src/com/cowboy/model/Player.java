@@ -76,14 +76,14 @@ public class Player {
 		if (isGrounded()) {
 			if (isSliding) {
 				Resource.playerSlide.draw(g, (int)x, (int)y);
-				g.drawRect(slideRect.x, slideRect.y, slideRect.width, slideRect.height);
+				//g.drawRect(slideRect.x, slideRect.y, slideRect.width, slideRect.height);
 			} 
 			else if (isDying) {
 				Resource.playerDead.draw(g, (int)x, (int)y);
 			}
 			else {
 				Resource.playerRun.draw(g, (int)x, (int)y);
-				g.drawRect(runRect.x, runRect.y, runRect.width, runRect.height);
+				//g.drawRect(runRect.x, runRect.y, runRect.width, runRect.height);
 			}
 		} else {
 			if (isDying) {
@@ -91,12 +91,12 @@ public class Player {
 			}
 			else {
 				Resource.playerJump.draw(g, (int)x, (int)y);
-				g.drawRect(jumpRect.x, jumpRect.y, jumpRect.width, jumpRect.height);
+				//g.drawRect(jumpRect.x, jumpRect.y, jumpRect.width, jumpRect.height);
 			}
 		}
 		
 		//for debugging
-		g.drawRect(ground.x, ground.y, ground.width, ground.height);
+		//g.drawRect(ground.x, ground.y, ground.width, ground.height);
 	}
 
 	public void updateRects() {

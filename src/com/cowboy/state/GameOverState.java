@@ -5,6 +5,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class GameOverState extends State {
+	private int score;
+	
+	public GameOverState(int score) {
+		this.score = score;
+	}
 
 	@Override
 	public void init() {

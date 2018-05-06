@@ -16,6 +16,8 @@ public class PlayState extends State{
 	private static final int PLAYER_WIDTH = 66;
 	private static final int PLAYER_HEIGHT = 92;
 	
+	private int score = 0;
+	
 	@Override
 	public void init() {
 		background = new Background();
@@ -32,7 +34,7 @@ public class PlayState extends State{
 	
 		player.update(deltaMillis);
 		if(!player.isAlive) {
-			this.setCurrentState(new GameOverState());
+			this.setCurrentState(new GameOverState(score));
 		}
 	}
 

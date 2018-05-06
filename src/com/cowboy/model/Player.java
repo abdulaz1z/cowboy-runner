@@ -20,7 +20,7 @@ public class Player {
 	public boolean isAlive;
 	public boolean isSliding;
 	public boolean isDying;
-	float dyingDuration = 500;
+	float dyingDuration = 400;
 	float slideDuration = 550;
 
 	static final int JUMP_VELOCITY = -15;

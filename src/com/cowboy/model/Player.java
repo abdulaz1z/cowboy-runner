@@ -19,6 +19,8 @@ public class Player {
 
 	public boolean isAlive;
 	public boolean isSliding;
+	public boolean isDying;
+	float dyingDuration = 600;
 	float slideDuration = 600;
 
 	static final int JUMP_VELOCITY = -15;
@@ -35,6 +37,7 @@ public class Player {
 		jumpRect = new Rectangle();
 		slideRect = new Rectangle();
 		isAlive = true;
+		isDying = false;
 		isSliding = false;
 		updateRects();
 	}
@@ -43,10 +46,20 @@ public class Player {
 		if (slideDuration > 0 && isSliding) {
 			slideDuration -= delta;
 		} else {
-			//System.out.println("slideDuration after: " + slideDuration);
 			isSliding = false;
 			slideDuration = 600;
 		}
+		
+		if (dyingDuration > 0 && isDying) {
+			dyingDuration -= delta;
+			isAlive = false;
+		} else {
+			if(!isAlive) {
+				//TODO: send to game over state
+			}
+		}
+		
+		
 		if (!isGrounded()) {
 			velY += ACCEL_GRAVITY;
 		} else {
@@ -65,13 +78,22 @@ public class Player {
 			if (isSliding) {
 				Resource.playerSlide.draw(g, (int)x, (int)y);
 				//g.drawRect(slideRect.x, slideRect.y, slideRect.width, slideRect.height);
-			} else {
+			} 
+			else if (isDying) {
+				Resource.playerDead.draw(g, (int)x, (int)y);
+			}
+			else {
 				Resource.playerRun.draw(g, (int)x, (int)y);
 				//g.drawRect(runRect.x, runRect.y, runRect.width, runRect.height);
 			}
 		} else {
-			Resource.playerJump.draw(g, (int)x, (int)y);
-			//g.drawRect(jumpRect.x, jumpRect.y, jumpRect.width, jumpRect.height);
+			if (isDying) {
+				Resource.playerDead.draw(g, (int)x, (int)y);
+			}
+			else {
+				Resource.playerJump.draw(g, (int)x, (int)y);
+				//g.drawRect(jumpRect.x, jumpRect.y, jumpRect.width, jumpRect.height);
+			}
 		}
 		
 		//for debugging
@@ -103,6 +125,11 @@ public class Player {
 				updateRects();
 			}
 		}
+	}
+	
+	public void die() {
+		isSliding = false;
+		isDying = true;
 	}
 
 	public boolean isGrounded() {

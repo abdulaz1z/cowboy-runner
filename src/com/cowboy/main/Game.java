@@ -84,7 +84,7 @@ public class Game extends Applet implements Runnable {
 
 			updateDurationMillis = (System.nanoTime() - beforeUpdateDraw) / 1000000L; // convert to milliseconds
 			sleepDurationMillis = Math.max(2, 17 - updateDurationMillis); // sleep at least 2 seconds
-
+		
 			repaint();
 			try {
 				Thread.sleep(sleepDurationMillis);

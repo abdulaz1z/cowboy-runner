@@ -3,8 +3,10 @@ package com.cowboy.state;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import com.cowboy.main.Game;
+import com.cowboy.model.Crate;
 import com.cowboy.model.Player;
 import com.cowboy.resource.Resource;
 import com.cowboy.util.Background;
@@ -17,11 +19,23 @@ public class PlayState extends State{
 	private static final int PLAYER_HEIGHT = 92;
 	
 	private int score = 0;
+	private int health = 5;
+	
+	private ArrayList<Crate> crates;
+	private static final int CRATE_HEIGHT = 50;
+	private static final int CRATE_WIDTH = 50;
+	private int blockSpeed = -6;
 	
 	@Override
 	public void init() {
 		background = new Background();
 		player = new Player(200, Game.GAME_HEIGHT - 48 - PLAYER_HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT);
+		
+		crates = new ArrayList<>();
+		for (int i = 1; i < 6; i++) {
+			Crate crate = new Crate(i * 300, Game.GAME_HEIGHT, CRATE_WIDTH, CRATE_HEIGHT);
+			crates.add(crate);
+		}
 	}
 
 	@Override
@@ -32,9 +46,36 @@ public class PlayState extends State{
 		Resource.playerSlide.update(deltaMillis);
 		Resource.playerDead.update(deltaMillis);
 	
+		if(health <= 0) {
+			player.die();
+		}
+		
 		player.update(deltaMillis);
 		if(!player.isAlive) {
 			this.setCurrentState(new GameOverState(score));
+		}
+		
+		for (Crate crate : crates) {
+			crate.update(blockSpeed);
+			if (crate.visible) {
+				if (player.isSliding && crate.rect.intersects(player.slideRect)) {
+					health--;
+					crate.onCollide(player);
+				}
+				else if(!player.isGrounded() && crate.rect.intersects(player.jumpRect)) {
+					health--;
+					crate.onCollide(player);
+				}
+				else if(!player.isSliding && crate.rect.intersects(player.runRect)) {
+					health--;
+					crate.onCollide(player);
+				}
+			}
+		}
+		
+		score += 1;
+		if (score % 1000 == 0 && blockSpeed > -280) {
+			blockSpeed -= 1;
 		}
 	}
 
@@ -42,6 +83,16 @@ public class PlayState extends State{
 	public void draw(Graphics g) {
 		background.draw(g);
 		player.draw(g);
+		
+		
+		for (Crate crate : crates) {
+			if (crate.visible) {
+				g.drawImage(Resource.crate, (int) crate.x, (int) crate.y, CRATE_WIDTH, CRATE_HEIGHT, null);
+			}
+		}
+		
+		g.drawString("SCORE: " + score/100 + "", 50, 50);
+		g.drawString("HEALTH: " + health + "", 650, 50);
 	}
 
 	@Override

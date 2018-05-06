@@ -35,6 +35,9 @@ public class Resource {
     public static Animation playerJump;
     public static Animation playerSlide;
     public static Animation playerDead;
+    
+    public static Image crate;
+
 
     /**
      * Method for loading all the assets.
@@ -55,6 +58,8 @@ public class Resource {
     	playerJump = loadAnimation("player_jump_", 10, ".png");
     	playerSlide = loadAnimation("player_slide_", 10, ".png");
     	playerDead = loadAnimation("player_dead_", 10, ".png");
+    	
+    	crate = loadImage("Crate.png");
     }
 
     /**

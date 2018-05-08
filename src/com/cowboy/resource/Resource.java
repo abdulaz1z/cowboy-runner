@@ -3,14 +3,19 @@ package com.cowboy.resource;
 import com.cowboy.util.Animation;
 import com.cowboy.util.Frame;
 
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 
 /**
@@ -120,5 +125,16 @@ public class Resource {
         	output.close();
         } catch (IOException e) {
         }
+    }
+    public void playSound(String fileName) throws IOException{
+    	try {
+			InputStream input = new FileInputStream(fileName);
+			AudioStream audio = new AudioStream(input);
+			AudioPlayer.player.start(audio);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     }
 }

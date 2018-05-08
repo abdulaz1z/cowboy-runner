@@ -56,7 +56,7 @@ public class PlayState extends State{
 		
 		player.update(deltaMillis);
 		if(!player.isAlive) {
-			this.setCurrentState(new GameOverState(score));
+			this.setCurrentState(new GameOverState(score/100));
 		}
 		
 		for (Crate crate : crates) {
